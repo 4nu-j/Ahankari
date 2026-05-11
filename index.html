@@ -604,6 +604,52 @@ body::after {
   font-family: 'Tiro Devanagari Hindi', serif;
   color: var(--mustard);
 }
+  /* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  /* 1. Disable custom cursor for touch screens to prevent glitches */
+  body {
+    cursor: auto;
+  }
+  .cursor {
+    display: none !important;
+  }
+
+  /* 2. Adjust Navbar to stack neatly instead of squishing */
+  nav {
+    padding: 1rem !important;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  nav.scrolled {
+    padding: 0.75rem 1rem !important;
+  }
+  .nav-links {
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  /* 3. Hero Section scaling */
+  .hero {
+    min-height: 60vh; /* Prevents the hero from being overly tall on phones */
+    padding-bottom: 2rem;
+  }
+
+  /* 4. Ensure product cards and filters wrap correctly */
+  .product-card {
+    width: 100% !important;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Forces any grid containers to display in a single column on mobile */
+  div[style*="display: grid"], .grid, .products {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 1rem;
+  }
+}
 </style>
 </head>
 <body>
