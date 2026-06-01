@@ -604,52 +604,90 @@ body::after {
   font-family: 'Tiro Devanagari Hindi', serif;
   color: var(--mustard);
 }
-  /* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 768px) {
-  /* 1. Disable custom cursor for touch screens to prevent glitches */
-  body {
-    cursor: auto;
-  }
-  .cursor {
-    display: none !important;
+  /* ── MOBILE RESPONSIVENESS ─────────────────────────────────── */
+  @media (max-width: 900px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
-  /* 2. Adjust Navbar to stack neatly instead of squishing */
-  nav {
-    padding: 1rem !important;
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-  nav.scrolled {
-    padding: 0.75rem 1rem !important;
-  }
-  .nav-links {
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  /* 3. Hero Section scaling */
-  .hero {
-    min-height: 60vh; /* Prevents the hero from being overly tall on phones */
-    padding-bottom: 2rem;
+  @media (max-width: 768px) {
+    /* Disable custom cursor on touch */
+    body { cursor: auto; }
+    .cursor { display: none !important; }
+
+    /* Navbar */
+    nav {
+      padding: 0.875rem 1.25rem !important;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    nav.scrolled { padding: 0.75rem 1.25rem !important; }
+    .nav-links { gap: 1.25rem; flex-wrap: wrap; }
+
+    /* Hero */
+    .hero { min-height: 70vh; }
+    .hero-content { padding: 0 1.25rem 2.5rem; }
+    .hero-bottom {
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .hero-cta { align-items: flex-start; }
+
+    /* Sections */
+    .section-pad { padding: 3.5rem 1.25rem; }
+    .section-header { flex-wrap: wrap; gap: 0.75rem; }
+    .section-title { font-size: 2.5rem; }
+
+    /* Filters */
+    .filter-row { gap: 6px; }
+    .filter-pill { font-size: 11px; padding: 5px 12px; }
+
+    /* Product grid — single column on small phones */
+    .product-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.875rem;
+    }
+    .product-img { height: 200px; }
+    .product-name { font-size: 0.95rem; }
+
+    /* Our Thing */
+    .our-thing { padding: 4rem 1.25rem; }
+    .our-thing-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .our-thing-headline { font-size: 2.5rem; }
+    .our-thing-images { grid-template-columns: 1fr 1fr; }
+    .our-img-box:nth-child(1),
+    .our-img-box:nth-child(4) { margin-top: 0; }
+
+    /* Drops */
+    .drops-strip {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 3.5rem 1.25rem;
+    }
+    .drops-title { font-size: 2.75rem; }
+
+    /* Footer */
+    footer { padding: 3rem 1.25rem 1.5rem; }
+    .footer-top {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
   }
 
-  /* 4. Ensure product cards and filters wrap correctly */
-  .product-card {
-    width: 100% !important;
-    margin-bottom: 1.5rem;
+  @media (max-width: 480px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .product-img { height: 260px; }
+    .hero-title { font-size: clamp(3.5rem, 18vw, 6rem); }
+    .footer-top { grid-template-columns: 1fr; }
+    nav { flex-direction: column; text-align: center; }
+    .nav-links { justify-content: center; }
   }
-  
-  /* Forces any grid containers to display in a single column on mobile */
-  div[style*="display: grid"], .grid, .products {
-    grid-template-columns: 1fr !important;
-    display: flex !important;
-    flex-direction: column !important;
-    padding: 0 1rem;
-  }
-}
 </style>
 </head>
 <body>
@@ -681,7 +719,7 @@ body::after {
       <span class="line">YOUR DRIP.</span>
     </h1>
     <div class="hero-bottom">
-      <p class="hero-sub">bollywood icons. y2k energy. words that hit different.<br>tees · shirts · henleys · polos</p>
+      <p class="hero-sub">bollywood icons. y2k energy. words that hit different.<br>henleys · ringers · waffle tees · ringer polos · shirts</p>
       <div class="hero-cta">
         <a href="#shop" class="btn-primary"><span>Shop the Drop ↗</span></a>
         <span class="scroll-hint">scroll</span>
@@ -720,56 +758,103 @@ body::after {
 
   <div class="filter-row reveal">
     <button class="filter-pill active" onclick="setFilter(this, 'all')">All</button>
-    <button class="filter-pill" onclick="setFilter(this, 'tees')">Tees</button>
-    <button class="filter-pill" onclick="setFilter(this, 'shirts')">Shirts</button>
-    <button class="filter-pill" onclick="setFilter(this, 'henleys')">Henleys & Polos</button>
+    <button class="filter-pill" onclick="setFilter(this, 'henley')">Henleys</button>
+    <button class="filter-pill" onclick="setFilter(this, 'ringer')">Ringer Tees</button>
+    <button class="filter-pill" onclick="setFilter(this, 'waffle')">Waffle Tees</button>
+    <button class="filter-pill" onclick="setFilter(this, 'polo')">Ringer Polos</button>
+    <button class="filter-pill" onclick="setFilter(this, 'shirt')">Shirts</button>
     <button class="filter-pill" onclick="setFilter(this, 'retro')">Retro Drop</button>
-    <button class="filter-pill" onclick="setFilter(this, 'y2k')">Y2K Edit</button>
     <button class="filter-pill" onclick="setFilter(this, 'text')">Text Pieces</button>
   </div>
 
   <div class="product-grid reveal" id="productGrid">
 
-    <div class="product-card" data-tags="tees retro">
+    <!-- HENLEY 1 -->
+    <div class="product-card" data-tags="henley retro">
+      <div class="product-img">
+        <div class="product-img-placeholder">AHANKARI</div>
+        <div class="product-badge badge-retro">Retro Drop ↗</div>
+      </div>
+      <div class="product-body">
+        <p class="product-type">Henley</p>
+        <p class="product-name">Rekha '78</p>
+        <p class="product-price">₹1,299 &nbsp;·&nbsp; S / M / L</p>
+        <p class="product-detail">back print — bollywood icon, gen z edit</p>
+      </div>
+    </div>
+
+    <!-- RINGER TEE 1 -->
+    <div class="product-card" data-tags="ringer retro">
       <div class="product-img">
         <div class="product-img-placeholder">AHANKARI</div>
         <div class="product-badge badge-retro">Retro Drop ↗</div>
       </div>
       <div class="product-body">
         <p class="product-type">Ringer Tee</p>
-        <p class="product-name">Rekha 1978</p>
-        <p class="product-price">₹1,299</p>
-        <p class="product-detail">back print: rekha, circa 1978 — gen z edit</p>
+        <p class="product-name">Amitabh '73</p>
+        <p class="product-price">₹1,199 &nbsp;·&nbsp; S / M / L</p>
+        <p class="product-detail">back print — matchbox art, contrast ringer</p>
       </div>
     </div>
 
-    <div class="product-card" data-tags="shirts y2k">
-      <div class="product-img">
-        <div class="product-img-placeholder">AHANKARI</div>
-        <div class="product-badge badge-y2k">Y2K Edit ↗</div>
-      </div>
-      <div class="product-body">
-        <p class="product-type">Cuban Collar Shirt</p>
-        <p class="product-name">Disco Bombay</p>
-        <p class="product-price">₹1,799</p>
-        <p class="product-detail">y2k edit — late 90s hindi pop collage</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-tags="shirts text">
+    <!-- WAFFLE TEE 1 -->
+    <div class="product-card" data-tags="waffle text">
       <div class="product-img">
         <div class="product-img-placeholder">AHANKARI</div>
         <div class="product-badge badge-text">Text Piece</div>
       </div>
       <div class="product-body">
-        <p class="product-type">Casual Shirt — Light Blue Lined</p>
-        <p class="product-name">Blissful</p>
-        <p class="product-price">₹1,599</p>
-        <p class="product-detail">back stitch: "blissful" in red thread</p>
+        <p class="product-type">Waffle Tee</p>
+        <p class="product-name">Dil Se</p>
+        <p class="product-price">₹1,349 &nbsp;·&nbsp; S / M / L</p>
+        <p class="product-detail">back stitch — दिल से in mustard thread</p>
       </div>
     </div>
 
-    <div class="product-card" data-tags="tees retro">
+    <!-- RINGER POLO 1 -->
+    <div class="product-card" data-tags="polo retro">
+      <div class="product-img">
+        <div class="product-img-placeholder">AHANKARI</div>
+        <div class="product-badge badge-retro">Retro Drop ↗</div>
+      </div>
+      <div class="product-body">
+        <p class="product-type">Ringer Polo</p>
+        <p class="product-name">Disco Bombay</p>
+        <p class="product-price">₹1,499 &nbsp;·&nbsp; S / M / L</p>
+        <p class="product-detail">back print — late 90s film poster remix</p>
+      </div>
+    </div>
+
+    <!-- SHIRT 1 -->
+    <div class="product-card" data-tags="shirt text">
+      <div class="product-img">
+        <div class="product-img-placeholder">AHANKARI</div>
+        <div class="product-badge badge-text">Text Piece</div>
+      </div>
+      <div class="product-body">
+        <p class="product-type">Shirt</p>
+        <p class="product-name">Blissful</p>
+        <p class="product-price">₹1,699 &nbsp;·&nbsp; S / M / L</p>
+        <p class="product-detail">back stitch — "blissful" in brick red thread</p>
+      </div>
+    </div>
+
+    <!-- HENLEY 2 -->
+    <div class="product-card" data-tags="henley text">
+      <div class="product-img">
+        <div class="product-img-placeholder">AHANKARI</div>
+        <div class="product-badge badge-text">Text Piece</div>
+      </div>
+      <div class="product-body">
+        <p class="product-type">Henley</p>
+        <p class="product-name">Majnu</p>
+        <p class="product-price">₹1,299 &nbsp;·&nbsp; S / M / L</p>
+        <p class="product-detail">back stitch — "majnu" in sepia thread</p>
+      </div>
+    </div>
+
+    <!-- RINGER TEE 2 -->
+    <div class="product-card" data-tags="ringer retro">
       <div class="product-img">
         <div class="product-img-placeholder">AHANKARI</div>
         <div class="product-badge badge-retro">Retro Drop ↗</div>
@@ -777,61 +862,51 @@ body::after {
       </div>
       <div class="product-body">
         <p class="product-type">Ringer Tee</p>
-        <p class="product-name">Amitabh '73</p>
-        <p class="product-price">₹1,299</p>
-        <p class="product-detail">back print: amitabh matchbox — gen z edit</p>
+        <p class="product-name">Naari No. 1</p>
+        <p class="product-price">₹1,199 &nbsp;·&nbsp; S / M / L</p>
+        <p class="product-detail">back print — vintage naari art, gen z edit</p>
       </div>
     </div>
 
-    <div class="product-card" data-tags="henleys text">
-      <div class="product-img">
-        <div class="product-img-placeholder">AHANKARI</div>
-        <div class="product-badge badge-text">Text Piece</div>
-      </div>
-      <div class="product-body">
-        <p class="product-type">Henley</p>
-        <p class="product-name">Dil Se</p>
-        <p class="product-price">₹1,499</p>
-        <p class="product-detail">back stitch: "दिल से" in mustard thread</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-tags="henleys y2k">
-      <div class="product-img">
-        <div class="product-img-placeholder">AHANKARI</div>
-        <div class="product-badge badge-y2k">Y2K Edit ↗</div>
-      </div>
-      <div class="product-body">
-        <p class="product-type">Polo Tee</p>
-        <p class="product-name">Star Struck</p>
-        <p class="product-price">₹1,399</p>
-        <p class="product-detail">y2k edit — early 2000s film poster remix</p>
-      </div>
-    </div>
-
-    <div class="product-card" data-tags="shirts retro">
+    <!-- WAFFLE TEE 2 -->
+    <div class="product-card" data-tags="waffle retro">
       <div class="product-img">
         <div class="product-img-placeholder">AHANKARI</div>
         <div class="product-badge badge-retro">Retro Drop ↗</div>
       </div>
       <div class="product-body">
-        <p class="product-type">Casual Shirt</p>
-        <p class="product-name">Naari No. 1</p>
-        <p class="product-price">₹1,699</p>
-        <p class="product-detail">back print: vintage naari art — gen z edit</p>
+        <p class="product-type">Waffle Tee</p>
+        <p class="product-name">Star Struck</p>
+        <p class="product-price">₹1,349 &nbsp;·&nbsp; S / M / L</p>
+        <p class="product-detail">back print — early 2000s film poster remix</p>
       </div>
     </div>
 
-    <div class="product-card" data-tags="shirts text">
+    <!-- RINGER POLO 2 -->
+    <div class="product-card" data-tags="polo text">
       <div class="product-img">
         <div class="product-img-placeholder">AHANKARI</div>
         <div class="product-badge badge-text">Text Piece</div>
       </div>
       <div class="product-body">
-        <p class="product-type">Cuban Collar Shirt</p>
-        <p class="product-name">Majnu</p>
-        <p class="product-price">₹1,799</p>
-        <p class="product-detail">back stitch: "majnu" in brick red thread</p>
+        <p class="product-type">Ringer Polo</p>
+        <p class="product-name">Yaad Hai</p>
+        <p class="product-price">₹1,499 &nbsp;·&nbsp; S / M / L</p>
+        <p class="product-detail">back stitch — "याद है" in teal thread</p>
+      </div>
+    </div>
+
+    <!-- SHIRT 2 -->
+    <div class="product-card" data-tags="shirt retro">
+      <div class="product-img">
+        <div class="product-img-placeholder">AHANKARI</div>
+        <div class="product-badge badge-retro">Retro Drop ↗</div>
+      </div>
+      <div class="product-body">
+        <p class="product-type">Shirt</p>
+        <p class="product-name">Superhit</p>
+        <p class="product-price">₹1,699 &nbsp;·&nbsp; S / M / L</p>
+        <p class="product-detail">back print — vintage film poster collage</p>
       </div>
     </div>
 
