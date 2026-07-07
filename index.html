@@ -34,18 +34,19 @@ body {
 /* CUSTOM CURSOR */
 .cursor {
   width: 12px; height: 12px;
-  background: var(--brick-red);
+  background: var(--parchment);
   border-radius: 50%;
   position: fixed; top: 0; left: 0;
   pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%);
   transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
-  mix-blend-mode: multiply;
+  mix-blend-mode: difference;
 }
+
 .cursor.hover {
   width: 40px; height: 40px;
-  background: var(--brick-red);
-  opacity: 0.3;
+  background: var(--parchment);
+  opacity: 1; /* Increased opacity makes the difference effect much sharper */
 }
 
 /* NAVBAR */
