@@ -697,7 +697,7 @@ body::after {
   <div class="pdp-info reveal">
     <p class="pdp-type">Waffle Tee</p>
     <h1 class="pdp-name">Blond</h1>
-    <p class="pdp-price">₹1,349</p>
+    <p class="pdp-price">₹1,799</p>
     <p class="pdp-detail">front + back print — tap the arrow to browse</p>
     <p class="pdp-desc">A waffle-knit tee featuring a retro postage-stamp inspired print and bold "BLOND" back type. Part of Drop 001 — limited pieces, no restocks once sold out.</p>
 
@@ -706,6 +706,7 @@ body::after {
       <button class="size-option" data-size="S" onclick="selectSize(this)">S</button>
       <button class="size-option active" data-size="M" onclick="selectSize(this)">M</button>
       <button class="size-option" data-size="L" onclick="selectSize(this)">L</button>
+      <button class="size-option" data-size="XL" onclick="selectSize(this)">XL</button>
     </div>
 
     <p class="pdp-label">Quantity</p>
@@ -718,14 +719,14 @@ body::after {
     </div>
 
     <div class="pdp-actions">
-      <button class="btn-primary" style="width:100%; text-align:center;" onclick="addToCart()"><span>Add to Cart — ₹1,349 →</span></button>
+      <button class="btn-primary" style="width:100%; text-align:center;" onclick="addToCart()"><span>Order on Whatsapp for ₹1,499 (code ARAMBH)→</span></button>
       <p class="add-to-cart-msg" id="cartMsg">Added to cart</p>
     </div>
 
     <div class="pdp-meta-row">
       <div class="pdp-meta-item"><b>Fabric</b>Waffle-knit cotton</div>
       <div class="pdp-meta-item"><b>Print</b>Front + back — screen print</div>
-      <div class="pdp-meta-item"><b>Shipping</b>Free above ₹1,499</div>
+      <div class="pdp-meta-item"><b>Shipping</b>Free above ₹2,000</div>
       <div class="pdp-meta-item"><b>Returns</b>7-day return window</div>
     </div>
   </div>
@@ -740,7 +741,7 @@ body::after {
       <ul>
         <li>Model is 5'10" wearing size M</li>
         <li>True to size</li>
-        <li>Available in S / M / L</li>
+        <li>Available in S / M / L / XL</li>
       </ul>
     </div>
   </div>
@@ -902,7 +903,7 @@ function addToCart() {
   if (existing) {
     existing.qty += qty;
   } else {
-    cart.push({ name: 'Blond', size: selectedSize, price: 1349, qty: qty });
+    cart.push({ name: 'Blond', size: selectedSize, price: 1799, qty: qty });
   }
   saveCart(cart);
   updateCartCountDisplay();
