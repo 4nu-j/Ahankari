@@ -718,8 +718,8 @@ body::after {
       </div>
     </div>
 
-   <div class="pdp-actions">
-  <a href="https://wa.me/919266389165?text=I%20want%20to%20order%20Blond%20of%20the%20size%20%5B%20%5D%2C%20code%20ARAMBH" target="_blank" class="btn-primary" style="width:100%; text-align:center; display:block;">
+    <div class="pdp-actions">
+  <a id="whatsappOrderBtn" href="https://wa.me/919266389165?text=I%20want%20to%20order%20Blond%20of%20the%20size%20M%2C%20code%20ARAMBH" target="_blank" class="btn-primary" style="width:100%; text-align:center; display:block;">
     <span>Order on Whatsapp for ₹1,499 (code ARAMBH)→</span>
   </a>
 </div>
@@ -838,8 +838,8 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 reveals.forEach(r => observer.observe(r));
 // PRODUCT PAGE — image switcher / size / qty / cart logic
-let selectedSize = 'M';
-let qty = 1;
+/*let selectedSize = 'M';
+let qty = 1;*/
 let currentImageIndex = 0;
 
 const pdpImages = [
@@ -867,7 +867,7 @@ function updateImage() {
   });
 }
 
-function selectSize(btn) {
+/*function selectSize(btn) {
   document.querySelectorAll('.size-option').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   selectedSize = btn.dataset.size;
@@ -916,7 +916,7 @@ function addToCart() {
 }
 
 // reflect cart count on page load
-updateCartCountDisplay();
+updateCartCountDisplay();*/
 
 </script>
 <!-- GSAP Core -->
@@ -936,6 +936,34 @@ updateCartCountDisplay();
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
+</script>
+  <!--whatsapp size button-->
+ <script>
+  let selectedSize = "M";
+  let quantity = 1;
+
+  function selectSize(el) {
+    document.querySelectorAll('.size-option').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    selectedSize = el.dataset.size;
+  }
+
+  function changeQty(change) {
+    quantity = Math.max(1, quantity + change);
+    document.getElementById('qtyValue').textContent = quantity;
+  }
+
+  document.getElementById('whatsappOrderBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const productName = "Blond";
+    const unitLabel = quantity > 1 ? "units" : "unit";
+    const message = `I want to order ${quantity} ${unitLabel} of ${productName}, size ${selectedSize}, code ARAMBH`;
+    const encodedMessage = encodeURIComponent(message);
+    const waLink = `https://wa.me/919266389165?text=${encodedMessage}`;
+
+    window.open(waLink, '_blank');
+  });
 </script>
 </body>
 </html>
